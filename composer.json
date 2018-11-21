@@ -1,0 +1,19 @@
+{
+    "type": "symfony-bundle",
+    "name": "golem-ai/api-bundle",
+    "description": "Api PHP library for Golem.ai's console",
+    "homepage": "https://golem.ai",
+    "license": "proprietary",
+    "require": {
+        "php": "^7.1.3",
+        "golem-ai/php-core": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "GolemAi\\ApiBundle\\": ""
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    }
+}

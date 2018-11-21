@@ -1,0 +1,48 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    GolemAi\Core\Factory\:
+        resource: '../../../php-core/Factory'
+        public: true
+
+    golem.serializer:
+        parent: 'serializer'
+        arguments:
+            $normalizers:
+                - '@GolemAi\Core\Serializer\Denormalizer\ResponseDenormalizer'
+                - '@GolemAi\Core\Serializer\Denormalizer\InteractionsDenormalizer'
+            $encoders:
+                - '@serializer.encoder.json'
+        public: true
+        autowire: true
+        autoconfigure: false
+
+    GolemAi\Core\Serializer\Denormalizer\:
+        resource: '../../../php-core/Serializer/Denormalizer'
+        exclude: '../../../php-core/Serializer/Denormalizer/PropertyHandler'
+        public: false
+        autowire: false
+        autoconfigure: false
+
+    GolemAi\Core\Serializer\Denormalizer\ResponseDenormalizer:
+        arguments:
+            $entityFactory: '@GolemAi\Core\Factory\Entity\Response\ResponseFactory'
+
+    GolemAi\Core\Serializer\Denormalizer\InteractionsDenormalizer: ~
+
+    GolemAi\Core\Serializer\Denormalizer\PropertyHandler\:
+        resource: '../../../php-core/Serializer/Denormalizer/PropertyHandler'
+        autowire: true
+        public: false
+        autoconfigure: true
+
+    GolemAi\Core\Serializer\Denormalizer\PropertyHandler\Interaction\CallPropertyHandler:
+        arguments:
+            $factory: '@GolemAi\Core\Factory\Entity\Interaction\InteractionFactory'
+
+    GolemAi\Core\Serializer\Denormalizer\PropertyHandler\Interaction\CallsPropertyHandler:
+        arguments:
+           $factory: '@GolemAi\Core\Factory\Entity\Interaction\InteractionFactory'
