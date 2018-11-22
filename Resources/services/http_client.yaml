@@ -1,0 +1,7 @@
+services:
+    GolemAi\Core\Golem:
+        class: 'GolemAi\Core\Golem'
+        arguments:
+            $serializer: '@golem.serializer'
+        autowire: true
+        public: true

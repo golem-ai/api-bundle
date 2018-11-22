@@ -21,16 +21,29 @@ class GolemAiApiExtension extends Extension
         $this->loadCore($configs, $container, $loader);
     }
 
-    private function loadSerializer(array $configs, ContainerBuilder $container, FileLoader $loader)
-    {
-        $loader->load('serializer.yaml');
-    }
-
     private function loadCore(array $configs, ContainerBuilder $containerBuilder, FileLoader $loader) {
         if (!is_dir(__DIR__.'/../../php-core')) {
             return;
         }
 
-        $this->loadSerializer($configs, $containerBuilder, $loader);
+        $this->loadEntityFactories($loader);
+        $this->loadSerializer($loader);
+        $this->loadHttpClient($loader);
+    }
+
+    private function loadSerializer(FileLoader $loader)
+    {
+        $loader->load('normalizers.yaml');
+        $loader->load('serializer.yaml');
+    }
+
+    private function loadHttpClient(FileLoader $loader)
+    {
+        $loader->load('http_client.yaml');
+    }
+
+    private function loadEntityFactories(FileLoader $loader)
+    {
+        $loader->load('factories.yaml');
     }
 }

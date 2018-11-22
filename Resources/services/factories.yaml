@@ -1,0 +1,9 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    GolemAi\Core\Factory\:
+        resource: '../../../php-core/Factory'
+        public: true
