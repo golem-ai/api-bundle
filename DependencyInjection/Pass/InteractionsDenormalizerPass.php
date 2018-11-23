@@ -2,8 +2,8 @@
 
 namespace GolemAi\ApiBundle\DependencyInjection\Pass;
 
-use GolemAi\ApiBundle\Serializer\Denormalizer\InteractionsDenormalizer;
-use GolemAi\ApiBundle\Serializer\Denormalizer\PropertyHandler\PropertyHandlerInterface;
+use GolemAi\Core\Serializer\Denormalizer\InteractionsDenormalizer;
+use GolemAi\Core\Serializer\Denormalizer\PropertyHandler\PropertyHandlerInterface;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;

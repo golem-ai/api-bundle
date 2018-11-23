@@ -1,6 +1,6 @@
 services:
     golem.serializer:
-        parent: 'serializer'
+        class: 'Symfony\Component\Serializer\Serializer'
         arguments:
             $normalizers:
                 - '@GolemAi\Core\Serializer\Denormalizer\ResponseDenormalizer'
