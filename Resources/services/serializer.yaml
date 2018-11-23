@@ -6,6 +6,7 @@ services:
                 - '@GolemAi\Core\Serializer\Denormalizer\ResponseDenormalizer'
                 - '@GolemAi\Core\Serializer\Denormalizer\InteractionsDenormalizer'
                 - '@GolemAi\Core\Serializer\Normalizer\RequestNormalizer'
+                - '@GolemAi\Core\Serializer\Normalizer\PingRequestNormalizer'
             $encoders:
                 - '@serializer.encoder.json'
         public: true

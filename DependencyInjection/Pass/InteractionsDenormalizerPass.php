@@ -3,7 +3,7 @@
 namespace GolemAi\ApiBundle\DependencyInjection\Pass;
 
 use GolemAi\Core\Serializer\Denormalizer\InteractionsDenormalizer;
-use GolemAi\Core\Serializer\Denormalizer\PropertyHandler\PropertyHandlerInterface;
+use GolemAi\Core\Serializer\Denormalizer\PropertyHandler\DenormalizerPropertyHandlerInterface;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
@@ -27,9 +27,9 @@ class InteractionsDenormalizerPass implements CompilerPassInterface
         foreach ($taggedServices as $id => $tags) {
             $reflection = new \ReflectionClass($id);
 
-            if (!$reflection->implementsInterface(PropertyHandlerInterface::class)) {
+            if (!$reflection->implementsInterface(DenormalizerPropertyHandlerInterface::class)) {
                 throw new \InvalidArgumentException(
-                    sprintf('Object %s does not implement %s interface.', get_class($id), PropertyHandlerInterface::class)
+                    sprintf('Object %s does not implement %s interface.', get_class($id), DenormalizerPropertyHandlerInterface::class)
                 );
             }
 
