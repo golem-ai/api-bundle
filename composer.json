@@ -3,12 +3,14 @@
     "name": "golem-ai/api-bundle",
     "description": "Api PHP library for Golem.ai's console",
     "homepage": "https://golem.ai",
-    {
-        "type": "vcs",
-        "url": "git@github.com:golem-ai/php-core.git",
-        "name": "golem-ai/php-core",
-        "no-api": true
-    }
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:golem-ai/php-core.git",
+            "name": "golem-ai/php-core",
+            "no-api": true
+        }
+    ],
     "license": "proprietary",
     "require": {
         "php": "^7.1.3",
