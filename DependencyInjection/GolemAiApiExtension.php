@@ -17,12 +17,12 @@ class GolemAiApiExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container)
     {
-        $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/services'));
+        $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/services'));
         $this->loadCore($configs, $container, $loader);
     }
 
     private function loadCore(array $configs, ContainerBuilder $containerBuilder, FileLoader $loader) {
-        if (!is_dir(__DIR__.'/../../php-core')) {
+        if (!is_dir(__DIR__ . '/../../php-core')) {
             return;
         }
 
@@ -33,6 +33,7 @@ class GolemAiApiExtension extends Extension
 
     private function loadSerializer(FileLoader $loader)
     {
+        $loader->load('encoders.yaml');
         $loader->load('normalizers.yaml');
         $loader->load('serializer.yaml');
     }

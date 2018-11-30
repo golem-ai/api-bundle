@@ -13,7 +13,7 @@
     ],
     "license": "proprietary",
     "require": {
-        "php": "^7.1.3",
+        "php": ">=5.5.9",
         "golem-ai/php-core": "^0"
     },
     "autoload": {

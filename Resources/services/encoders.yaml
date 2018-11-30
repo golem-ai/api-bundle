@@ -1,0 +1,5 @@
+services:
+    GolemAi\Core\Serializer\Encoder\ResponseEncoder:
+        class: 'GolemAi\Core\Serializer\Encoder\ResponseEncoder'
+        arguments:
+            - '@serializer.encoder.json'

@@ -16,18 +16,24 @@ services:
         arguments:
             $entityFactory: '@GolemAi\Core\Factory\Entity\Response\ResponseFactory'
 
-    GolemAi\Core\Serializer\Denormalizer\InteractionsDenormalizer: ~
+    GolemAi\Core\Serializer\Denormalizer\ResponseDataDenormalizer:
+        arguments:
+            $entityFactory: '@GolemAi\Core\Factory\Entity\Response\ResponseDataFactory'
 
-    GolemAi\Core\Serializer\Denormalizer\PropertyHandler\:
-        resource: '../../../php-core/Serializer/Denormalizer/PropertyHandler'
-        autowire: true
-        public: false
-        autoconfigure: true
+    GolemAi\Core\Serializer\Denormalizer\PongResponseDenormalizer:
+        arguments:
+            $entityFactory: '@GolemAi\Core\Factory\Entity\Response\ResponseFactory'
+
+    GolemAi\Core\Serializer\Denormalizer\InteractionsDenormalizer: ~
 
     GolemAi\Core\Serializer\Denormalizer\PropertyHandler\Interaction\CallPropertyHandler:
         arguments:
             $factory: '@GolemAi\Core\Factory\Entity\Interaction\InteractionFactory'
+        tags:
+            - { name: 'app.interactions.denormalizer.property' }
 
     GolemAi\Core\Serializer\Denormalizer\PropertyHandler\Interaction\CallsPropertyHandler:
         arguments:
             $factory: '@GolemAi\Core\Factory\Entity\Interaction\InteractionFactory'
+        tags:
+            - { name: 'app.interactions.denormalizer.property' }

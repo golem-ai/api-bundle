@@ -4,11 +4,13 @@ services:
         arguments:
             $normalizers:
                 - '@GolemAi\Core\Serializer\Denormalizer\ResponseDenormalizer'
+                - '@GolemAi\Core\Serializer\Denormalizer\PongResponseDenormalizer'
+                - '@GolemAi\Core\Serializer\Denormalizer\ResponseDataDenormalizer'
                 - '@GolemAi\Core\Serializer\Denormalizer\InteractionsDenormalizer'
                 - '@GolemAi\Core\Serializer\Normalizer\RequestNormalizer'
                 - '@GolemAi\Core\Serializer\Normalizer\PingRequestNormalizer'
             $encoders:
-                - '@serializer.encoder.json'
+                - '@GolemAi\Core\Serializer\Encoder\ResponseEncoder'
         public: true
         autowire: true
         autoconfigure: false
