@@ -27,6 +27,12 @@ services:
     GolemAi\Core\Serializer\Denormalizer\InteractionsDenormalizer: ~
     GolemAi\Core\Serializer\Denormalizer\ParameterDenormalizer: ~
 
+    GolemAi\Core\Extractor\:
+        resource: '../../../php-core/Extractor'
+        public: false
+        autowire: true
+        autoconfigure: true
+
     GolemAi\Core\Serializer\Denormalizer\PropertyHandler\Interaction\CallPropertyHandler:
         arguments:
             $factory: '@GolemAi\Core\Factory\Entity\Interaction\InteractionFactory'
