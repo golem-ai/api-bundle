@@ -11,6 +11,7 @@ services:
                 - '@GolemAi\Core\Serializer\Normalizer\PingRequestNormalizer'
             $encoders:
                 - '@GolemAi\Core\Serializer\Encoder\ResponseEncoder'
+                - '@serializer.encoder.json'
         public: true
         autowire: true
         autoconfigure: false
