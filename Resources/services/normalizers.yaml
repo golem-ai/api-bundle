@@ -25,15 +25,24 @@ services:
             $entityFactory: '@GolemAi\Core\Factory\Entity\Response\ResponseFactory'
 
     GolemAi\Core\Serializer\Denormalizer\InteractionsDenormalizer: ~
+    GolemAi\Core\Serializer\Denormalizer\ParameterDenormalizer: ~
 
     GolemAi\Core\Serializer\Denormalizer\PropertyHandler\Interaction\CallPropertyHandler:
         arguments:
             $factory: '@GolemAi\Core\Factory\Entity\Interaction\InteractionFactory'
+        calls:
+            -   method: setDenormalizer
+                arguments:
+                    - '@GolemAi\Core\Serializer\Denormalizer\ParameterDenormalizer'
         tags:
             - { name: 'app.interactions.denormalizer.property' }
 
     GolemAi\Core\Serializer\Denormalizer\PropertyHandler\Interaction\CallsPropertyHandler:
         arguments:
             $factory: '@GolemAi\Core\Factory\Entity\Interaction\InteractionFactory'
+        calls:
+            -   method: setDenormalizer
+                arguments:
+                    - '@GolemAi\Core\Serializer\Denormalizer\ParameterDenormalizer'
         tags:
             - { name: 'app.interactions.denormalizer.property' }
