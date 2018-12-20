@@ -6,11 +6,10 @@ use GolemAi\Core\Extractor\ParametersDataExtractorInterface;
 use GolemAi\Core\Serializer\Denormalizer\ParameterDenormalizer;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Reference;
 
 class ParameterDenormalizerPass implements CompilerPassInterface
 {
-    const TAG = 'app.parameter.denormalizer.property';
+    const TAG = 'golem.parameter_extractor';
     const SERVICE = ParameterDenormalizer::class;
 
     public function process(ContainerBuilder $container)
@@ -25,7 +24,8 @@ class ParameterDenormalizerPass implements CompilerPassInterface
         $taggedServices = $container->findTaggedServiceIds(self::TAG);
 
         foreach ($taggedServices as $id => $tags) {
-            $reflection = new \ReflectionClass($id);
+            $taggedService = $container->findDefinition($id);
+            $reflection = new \ReflectionClass($taggedService->getClass());
 
             if (!$reflection->implementsInterface(ParametersDataExtractorInterface::class)) {
                 throw new \InvalidArgumentException(
@@ -34,7 +34,7 @@ class ParameterDenormalizerPass implements CompilerPassInterface
             }
 
             // add the transport service to the ChainTransport service
-            $definition->addMethodCall('addExtractor', array(new Reference($id)));
+            $definition->addMethodCall('addExtractor', array($taggedService));
         }
     }
 }

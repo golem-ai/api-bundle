@@ -1,17 +1,3 @@
 services:
     golem.serializer:
         class: 'Symfony\Component\Serializer\Serializer'
-        arguments:
-            $normalizers:
-                - '@GolemAi\Core\Serializer\Denormalizer\ResponseDenormalizer'
-                - '@GolemAi\Core\Serializer\Denormalizer\PongResponseDenormalizer'
-                - '@GolemAi\Core\Serializer\Denormalizer\ResponseDataDenormalizer'
-                - '@GolemAi\Core\Serializer\Denormalizer\InteractionsDenormalizer'
-                - '@GolemAi\Core\Serializer\Normalizer\RequestNormalizer'
-                - '@GolemAi\Core\Serializer\Normalizer\PingRequestNormalizer'
-            $encoders:
-                - '@GolemAi\Core\Serializer\Encoder\ResponseEncoder'
-                - '@serializer.encoder.json'
-        public: true
-        autowire: true
-        autoconfigure: false

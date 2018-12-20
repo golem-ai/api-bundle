@@ -1,9 +1,10 @@
 services:
-    GolemAi\Core\Golem:
+    golem:
         class: 'GolemAi\Core\Golem'
         arguments:
-            $httpClient: '@httplug.client'
-            $requestFactory: '@httplug.message_factory.default'
-            $serializer: '@golem.serializer'
+            - '@httplug.client'
+            - '@httplug.message_factory.default'
+            - '@golem.serializer'
+            - '@golem.factory.request'
         autowire: true
         public: true

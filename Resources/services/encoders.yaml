@@ -1,5 +1,8 @@
 services:
-    GolemAi\Core\Serializer\Encoder\ResponseEncoder:
+    golem.serializer.encoder.response:
         class: 'GolemAi\Core\Serializer\Encoder\ResponseEncoder'
         arguments:
             - '@serializer.encoder.json'
+        tags:
+            - { name: 'golem.serializer.encoder' }
+        public: false

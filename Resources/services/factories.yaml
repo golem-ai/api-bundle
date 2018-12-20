@@ -1,9 +1,19 @@
 services:
     _defaults:
         autowire: true
-        autoconfigure: true
-        public: false
-
-    GolemAi\Core\Factory\:
-        resource: '../../../php-core/Factory'
         public: true
+
+    golem.factory.interactions:
+        class: 'GolemAi\Core\Factory\Entity\Interaction\InteractionFactory'
+
+    golem.factory.request:
+        class: 'GolemAi\Core\Factory\Entity\Request\RequestDataFactory'
+
+    golem.factory.response.error:
+        class: 'GolemAi\Core\Factory\Entity\Response\ErrorResponseFactory'
+
+    golem.factory.response.data:
+        class: 'GolemAi\Core\Factory\Entity\Response\ResponseDataFactory'
+
+    golem.factory.response:
+        class: 'GolemAi\Core\Factory\Entity\Response\ResponseFactory'

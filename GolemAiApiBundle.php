@@ -2,6 +2,7 @@
 
 namespace GolemAi\ApiBundle;
 
+use GolemAi\ApiBundle\DependencyInjection\Pass\GolemSerializerPass;
 use GolemAi\ApiBundle\DependencyInjection\Pass\InteractionsDenormalizerPass;
 use GolemAi\ApiBundle\DependencyInjection\Pass\JsonSerializerEncoderPass;
 use GolemAi\ApiBundle\DependencyInjection\Pass\ParameterDenormalizerPass;
@@ -23,6 +24,7 @@ class GolemAiApiBundle extends Bundle
             ->addTag(ParameterDenormalizerPass::TAG)
         ;
 
+        $container->addCompilerPass(new GolemSerializerPass());
         $container->addCompilerPass(new JsonSerializerEncoderPass());
     }
 }

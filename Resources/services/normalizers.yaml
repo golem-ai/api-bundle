@@ -1,54 +1,82 @@
 services:
-    GolemAi\Core\Serializer\Normalizer\:
-        resource: '../../../php-core/Serializer/Normalizer'
+    golem.serializer.normalizer.ping_request:
+        class: 'GolemAi\Core\Serializer\Normalizer\PingRequestNormalizer'
         public: false
-        autowire: false
-        autoconfigure: false
-
-    GolemAi\Core\Serializer\Denormalizer\:
-        resource: '../../../php-core/Serializer/Denormalizer'
-        exclude: '../../../php-core/Serializer/Denormalizer/PropertyHandler'
-        public: false
-        autowire: false
-        autoconfigure: false
-
-    GolemAi\Core\Serializer\Denormalizer\ResponseDenormalizer:
-        arguments:
-            $entityFactory: '@GolemAi\Core\Factory\Entity\Response\ResponseFactory'
-
-    GolemAi\Core\Serializer\Denormalizer\ResponseDataDenormalizer:
-        arguments:
-            $entityFactory: '@GolemAi\Core\Factory\Entity\Response\ResponseDataFactory'
-
-    GolemAi\Core\Serializer\Denormalizer\PongResponseDenormalizer:
-        arguments:
-            $entityFactory: '@GolemAi\Core\Factory\Entity\Response\ResponseFactory'
-
-    GolemAi\Core\Serializer\Denormalizer\InteractionsDenormalizer: ~
-    GolemAi\Core\Serializer\Denormalizer\ParameterDenormalizer: ~
-
-    GolemAi\Core\Extractor\:
-        resource: '../../../php-core/Extractor'
-        public: false
-        autowire: true
-        autoconfigure: true
-
-    GolemAi\Core\Serializer\Denormalizer\PropertyHandler\Interaction\CallPropertyHandler:
-        arguments:
-            $factory: '@GolemAi\Core\Factory\Entity\Interaction\InteractionFactory'
-        calls:
-            -   method: setDenormalizer
-                arguments:
-                    - '@GolemAi\Core\Serializer\Denormalizer\ParameterDenormalizer'
         tags:
-            - { name: 'app.interactions.denormalizer.property' }
+            - { name: 'golem.serializer.normalizer' }
 
-    GolemAi\Core\Serializer\Denormalizer\PropertyHandler\Interaction\CallsPropertyHandler:
-        arguments:
-            $factory: '@GolemAi\Core\Factory\Entity\Interaction\InteractionFactory'
-        calls:
-            -   method: setDenormalizer
-                arguments:
-                    - '@GolemAi\Core\Serializer\Denormalizer\ParameterDenormalizer'
+    golem.serializer.normalizer.request:
+        class: 'GolemAi\Core\Serializer\Normalizer\RequestNormalizer'
+        public: false
         tags:
-            - { name: 'app.interactions.denormalizer.property' }
+            - { name: 'golem.serializer.normalizer' }
+
+    golem.serializer.denormalizer.interactions:
+        class: 'GolemAi\Core\Serializer\Denormalizer\InteractionsDenormalizer'
+        arguments:
+            - '@golem.factory.interactions'
+        tags:
+            - { name: 'golem.serializer.normalizer' }
+
+    golem.serializer.denormalizer.parameter:
+        class: 'GolemAi\Core\Serializer\Denormalizer\ParameterDenormalizer'
+        tags:
+            - { name: 'golem.serializer.normalizer' }
+
+    golem.serializer.denormalizer.pong_response:
+        class: 'GolemAi\Core\Serializer\Denormalizer\PongResponseDenormalizer'
+        arguments:
+            - '@golem.factory.response'
+        tags:
+            - { name: 'golem.serializer.normalizer' }
+
+    golem.serializer.denormalizer.response_data:
+        class: 'GolemAi\Core\Serializer\Denormalizer\ResponseDataDenormalizer'
+        arguments:
+            - '@golem.factory.response.data'
+        tags:
+            - { name: 'golem.serializer.normalizer' }
+
+    golem.serializer.denormalizer.response:
+        class: 'GolemAi\Core\Serializer\Denormalizer\ResponseDenormalizer'
+        arguments:
+            - '@golem.factory.response'
+        tags:
+            - { name: 'golem.serializer.normalizer' }
+
+    golem.extractor.parameters.array:
+        class: 'GolemAI\Core\Extractor\ArrayParameterExtractor'
+        tags:
+            - { name: 'golem.parameter_extractor' }
+
+    golem.extractor.parameters.scalar:
+        class: 'GolemAI\Core\Extractor\ScalarParameterExtractor'
+        tags:
+            - { name: 'golem.parameter_extractor' }
+
+    golem.extractor.parameters.null:
+        class: 'GolemAI\Core\Extractor\NullParameterExtractor'
+        tags:
+            - { name: 'golem.parameter_extractor' }
+
+    golem.serializer.denormalizer.parameter.property_handler.call:
+        class: 'GolemAi\Core\Serializer\Denormalizer\PropertyHandler\Interaction\CallPropertyHandler'
+        arguments:
+            - '@golem.factory.interactions'
+        calls:
+            -   method: 'setDenormalizer'
+                arguments:
+                    - '@golem.serializer.denormalizer.parameter'
+        tags:
+            - { name: 'golem.interactions_property_handler' }
+
+    golem.serializer.denormalizer.parameter.property_handler.calls:
+        class: 'GolemAi\Core\Serializer\Denormalizer\PropertyHandler\Interaction\CallsPropertyHandler'
+        arguments:
+            - '@golem.factory.interactions'
+        calls:
+            -   method: 'setDenormalizer'
+                arguments:
+                    - '@golem.serializer.denormalizer.parameter'
+        tags:
+            - { name: 'golem.interactions_property_handler' }
