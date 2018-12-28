@@ -11,6 +11,14 @@ services:
         tags:
             - { name: 'golem.serializer.normalizer' }
 
+    golem.serializer.denormalizer.error:
+        class: 'GolemAi\Core\Serializer\Denormalizer\ErrorResponseDenormalizer'
+        arguments:
+            - '@golem.factory.response.error'
+        public: false
+        tags:
+            - { name: 'golem.serializer.normalizer' }
+
     golem.serializer.denormalizer.interactions:
         class: 'GolemAi\Core\Serializer\Denormalizer\InteractionsDenormalizer'
         arguments:
