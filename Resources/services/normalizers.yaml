@@ -53,17 +53,17 @@ services:
             - { name: 'golem.serializer.normalizer' }
 
     golem.extractor.parameters.array:
-        class: 'GolemAI\Core\Extractor\ArrayParameterExtractor'
+        class: 'GolemAi\Core\Extractor\ArrayParameterExtractor'
         tags:
             - { name: 'golem.parameter_extractor' }
 
     golem.extractor.parameters.scalar:
-        class: 'GolemAI\Core\Extractor\ScalarParameterExtractor'
+        class: 'GolemAi\Core\Extractor\ScalarParameterExtractor'
         tags:
             - { name: 'golem.parameter_extractor' }
 
     golem.extractor.parameters.null:
-        class: 'GolemAI\Core\Extractor\NullParameterExtractor'
+        class: 'GolemAi\Core\Extractor\NullParameterExtractor'
         tags:
             - { name: 'golem.parameter_extractor' }
 

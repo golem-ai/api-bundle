@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 class ParameterDenormalizerPass implements CompilerPassInterface
 {
     const TAG = 'golem.parameter_extractor';
-    const SERVICE = ParameterDenormalizer::class;
+    const SERVICE = 'golem.serializer.denormalizer.parameter';
 
     public function process(ContainerBuilder $container)
     {
