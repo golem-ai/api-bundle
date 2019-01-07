@@ -22,7 +22,7 @@ services:
     golem.serializer.denormalizer.interactions:
         class: 'GolemAi\Core\Serializer\Denormalizer\InteractionsDenormalizer'
         arguments:
-            - '@golem.factory.interactions'
+            - '@golem.factory.snake_to_camel'
         tags:
             - { name: 'golem.serializer.normalizer' }
 
@@ -41,14 +41,14 @@ services:
     golem.serializer.denormalizer.response_data:
         class: 'GolemAi\Core\Serializer\Denormalizer\ResponseDataDenormalizer'
         arguments:
-            - '@golem.factory.response.data'
+            - '@golem.factory.snake_to_camel'
         tags:
             - { name: 'golem.serializer.normalizer' }
 
     golem.serializer.denormalizer.response:
         class: 'GolemAi\Core\Serializer\Denormalizer\ResponseDenormalizer'
         arguments:
-            - '@golem.factory.response'
+            - '@golem.factory.snake_to_camel'
         tags:
             - { name: 'golem.serializer.normalizer' }
 
@@ -70,7 +70,7 @@ services:
     golem.serializer.denormalizer.parameter.property_handler.call:
         class: 'GolemAi\Core\Serializer\Denormalizer\PropertyHandler\Interaction\CallPropertyHandler'
         arguments:
-            - '@golem.factory.interactions'
+            - '@golem.factory.snake_to_camel'
         calls:
             -   method: 'setDenormalizer'
                 arguments:
@@ -81,7 +81,7 @@ services:
     golem.serializer.denormalizer.parameter.property_handler.calls:
         class: 'GolemAi\Core\Serializer\Denormalizer\PropertyHandler\Interaction\CallsPropertyHandler'
         arguments:
-            - '@golem.factory.interactions'
+            - '@golem.factory.snake_to_camel'
         calls:
             -   method: 'setDenormalizer'
                 arguments:

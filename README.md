@@ -9,6 +9,8 @@
 ```php
 // AcmeController.php
 
+use GolemAi\Core\Serializer\Encoder\ResponseEncoder;
+
 class AcmeController extends Controller {
     public function acmeAction() {
         $serializer = $this->getContainer()->get('golem.serializer');
@@ -29,7 +31,7 @@ class AcmeController extends Controller {
             'parameters_detail' => false,
         ]);
 
-        $responseObject = $serializer->deserialize($response, Response::class, 'golem_response');
+        $responseObject = $serializer->deserialize($response, Response::class, ResponseEncoder::FORMAT');
 
         // Do stuff...
     }

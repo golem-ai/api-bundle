@@ -17,3 +17,11 @@ services:
 
     golem.factory.response:
         class: 'GolemAi\Core\Factory\Entity\Response\ResponseFactory'
+
+    golem.converter.snake_to_camel:
+        class: 'GolemAi\Core\Converter\SnakeToCamelConverter'
+
+    golem.factory.snake_to_camel:
+        class: 'GolemAi\Core\Factory\Entity\SnakeToCamelCaseEntityFactory'
+        arguments:
+            - '@golem.converter.snake_to_camel'
