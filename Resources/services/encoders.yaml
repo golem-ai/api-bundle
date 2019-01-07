@@ -6,3 +6,11 @@ services:
         tags:
             - { name: 'golem.serializer.encoder' }
         public: false
+
+    golem.serializer.encoder.array_response:
+        class: 'GolemAi\Core\Serializer\Encoder\ArrayResponseEncoder'
+        arguments:
+            - '@serializer.encoder.json'
+        tags:
+            - { name: 'golem.serializer.encoder' }
+        public: false
