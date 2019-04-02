@@ -14,7 +14,7 @@
     "license": "proprietary",
     "require": {
         "php": ">=7.1.8",
-        "golem-ai/php-core": "0.1.24"
+        "golem-ai/php-core": ">=0.1.24"
     },
     "autoload": {
         "psr-4": {
